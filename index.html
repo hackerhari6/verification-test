@@ -169,26 +169,25 @@
         }
 
         function success() {
-            isVerified = true;
-            
-            // Lock the slider in the "success" state
-            thumb.style.left = maxSlide + 'px';
-            track.style.width = '100%';
-            thumb.innerHTML = "&#10003;"; // Checkmark HTML Entity
-            thumb.style.backgroundColor = "#4CAF50";
-            text.innerText = "Verified";
-            text.style.color = "white";
-            instructions.innerText = "Redirecting...";
+    isVerified = true;
 
-            // Remove event listeners to stop further interaction
-            document.removeEventListener('mousemove', drag);
-            document.removeEventListener('touchmove', drag);
+    thumb.style.left = maxSlide + 'px';
+    track.style.width = '100%';
+    thumb.innerHTML = "✓";
+    thumb.style.backgroundColor = "#4CAF50";
+    text.innerText = "Verified";
+    text.style.color = "white";
+    instructions.innerText = "Loading...";
 
-            // Execute the redirect after a brief pause so the user sees the success state
-            setTimeout(function() {
-                window.location.replace(destination);
-            }, 800);
-        }
+    setTimeout(function() {
+        document.body.innerHTML = `
+            <div style="display:flex;justify-content:center;align-items:center;height:100vh;">
+                <img src="https://media.giphy.com/media/8m4R4pvViWtRzbloJ1/giphy.gif"
+                     style="max-width:90%;height:auto;">
+            </div>
+        `;
+    }, 800);
+}
 
         // Attach event listeners for Mouse (Desktop)
         thumb.addEventListener('mousedown', startDrag);
